@@ -1,3 +1,12 @@
+CREATE TABLE iceland_grocery_items (
+    id SERIAL PRIMARY KEY,
+    grocery_item TEXT NOT NULL,
+    brand_name TEXT NOT NULL,
+    type_of_grocery TEXT NOT NULL,
+    approx_cost_isk NUMERIC NOT NULL,
+    approx_cost_usd NUMERIC NOT NULL
+);
+
 INSERT INTO iceland_grocery_items (grocery_item, brand_name, type_of_grocery, approx_cost_isk, approx_cost_usd) VALUES
 
 ('Skyr Natural', 'MS Skyr', 'dairy_product', 350, 2.5),
