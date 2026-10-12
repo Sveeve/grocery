@@ -1,0 +1,28 @@
+INSERT INTO iceland_grocery_items (grocery_item, brand_name, type_of_grocery, approx_cost_isk, approx_cost_usd) VALUES
+
+('Skyr Natural', 'MS Skyr', 'dairy_product', 350, 2.5),
+('Skyr Blueberry', 'MS Skyr', 'dairy_product', 370, 2.7),
+('Skyr Strawberry', 'MS Skyr', 'dairy_product', 380, 2.8),
+('Skyr Vanilla', 'MS Skyr', 'dairy_product', 360, 2.6),
+('Skyr Peach', 'MS Skyr', 'dairy_product', 390, 2.9),
+
+('Harðfiskur Cod', 'Íslensk Harðfiskur', 'dried_fish_snack', 1000, 7.2),
+('Harðfiskur Haddock', 'Íslensk Harðfiskur', 'dried_fish_snack', 1100, 8.0),
+('Harðfiskur Catfish', 'Íslensk Harðfiskur', 'dried_fish_snack', 1200, 8.7),
+
+('Flatkaka Rye', 'Móðir Jörð', 'bread', 400, 2.9),
+('Rúgbrauð Geothermal', 'Móðir Jörð', 'rye_bread', 800, 5.8),
+('Rúgbrauð Sweet', 'Móðir Jörð', 'rye_bread', 850, 6.1),
+
+('Hangikjöt Smoked Lamb', 'SS Hangikjöt', 'smoked_meat', 3200, 23.0),
+('Hangikjöt Holiday Cut', 'SS Hangikjöt', 'smoked_meat', 3500, 25.0),
+('Lamb Shoulder', 'Icelandic Lamb Co-op', 'fresh_meat', 2800, 20.0),
+('Lamb Leg', 'Icelandic Lamb Co-op', 'fresh_meat', 3000, 21.5),
+('Lamb Chops', 'Icelandic Lamb Co-op', 'fresh_meat', 3200, 23.0),
+
+('Brennivín Classic', 'Vínbúðin', 'alcoholic_beverage', 5000, 36.0),
+('Brennivín Special Reserve', 'Vínbúðin', 'alcoholic_beverage', 5500, 40.0),
+
+('Cod Liver Oil Classic', 'Lýsi', 'supplement', 2200, 16.0),
+('Cod Liver Oil Lemon', 'Lýsi', 'supplement', 2300, 16.5),
+('Cod Liver Oil Kids', 'Lýsi', 'supplement', 2400, 17.2);
