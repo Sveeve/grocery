@@ -1,1 +1,229 @@
+4.
+<?php
+$host = "localhost";
+$user = "root";
+$password = "";
+$dbname = "tejero";
+$dsn = "mysql:host={$host}; dbname={$dbname}";
+$pdo = new PDO($dsn, $user, $password);
+$pdo->exec("SET time_zone = '+08:00';");
+?>
 
+
+5.
+<?php require_once 'core/dbConfig.php'; ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+			
+
+		<?php 
+	//select
+	$stmt = $pdo->prepare("SELECT * FROM iceland_grocery_items");
+	$stmt->execute();
+
+	//fetch
+	$items = $stmt->fetchAll();
+
+	//printing
+	echo "<pre>";
+	print_r($items);
+	echo "</pre>";
+
+	?>
+</body>
+</html>
+
+
+
+6.
+<?php require_once 'core/dbConfig.php'; ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+			
+		<?php
+		// Select all grocery items from the table
+		$sql = "SELECT * FROM iceland_grocery_items";
+
+		// Execute the SQL query
+		$stmt = $pdo->query($sql);
+
+		// Fetch one row from the database
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		// Display the fetched data as an array
+		echo "<pre>";
+		print_r($row);
+		echo "</pre>";
+		?>
+</body>
+</html>
+
+
+7.
+<?php require_once 'core/dbConfig.php'; ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+			
+            	<?php
+            // SQL query to insert a new item
+            $sql = "INSERT INTO iceland_grocery_items
+                    (grocery_item, brand_name, type_of_grocery, approx_cost_isk, approx_cost_usd)
+                    VALUES (:item, :brand, :type, :isk, :usd)";
+            
+            // Prepare the query
+            $stmt = $pdo->prepare($sql);
+            
+            // Insert the new grocery item
+            $stmt->execute([
+                ':item' => 'Icelandic Blueberry Jam',
+                ':brand' => 'Icelandic Pantry',
+                ':type' => 'pantry',
+                ':isk' => 750,
+                ':usd' => 5.4
+            ]);
+            
+            // Show confirmation message
+            echo "New grocery item added successfully!";
+            ?>
+</body>
+</html>
+
+
+8.
+<?php require_once 'core/dbConfig.php'; ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+
+        			<?php
+        // SQL query to delete the new grocery item
+        $sql = "DELETE FROM iceland_grocery_items
+                WHERE grocery_item = :item";
+        
+        // Prepare the query
+        $stmt = $pdo->prepare($sql);
+        
+        // Delete the item from the database
+        $stmt->execute([
+            ':item' => 'Icelandic Blueberry Jam'
+        ]);
+        
+        // Show confirmation message
+        echo "Grocery item deleted successfully!";
+        ?>
+                    
+</body>
+</html>
+
+9.
+<?php require_once 'core/dbConfig.php'; ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+			
+			<?php
+		// SQL query to update a grocery item
+		$sql = "UPDATE iceland_grocery_items
+				SET approx_cost_isk = :isk,
+					approx_cost_usd = :usd
+				WHERE grocery_item = :item";
+
+		// Prepare the query
+		$stmt = $pdo->prepare($sql);
+
+		// Update the price of Skyr Natural
+		$stmt->execute([
+			':isk' => 400,
+			':usd' => 2.9,
+			':item' => 'Skyr Natural'
+		]);
+
+		// Show confirmation message
+		echo "Grocery item updated successfully!";
+		?>
+</body>
+</html>
+
+
+10.
+<?php require_once 'core/dbConfig.php'; ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+			
+	
+			<?php
+			// Get all grocery items
+			$sql = "SELECT * FROM iceland_grocery_items";
+
+			// Execute the query
+			$stmt = $pdo->query($sql);
+
+			// Start the HTML table
+			echo "<table border='1'>";
+			echo "<tr>
+					<th>ID</th>
+					<th>Grocery Item</th>
+					<th>Brand</th>
+					<th>Type</th>
+					<th>Cost (ISK)</th>
+					<th>Cost (USD)</th>
+				</tr>";
+
+			// Display each row in the table
+			while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+				echo "<tr>";
+				echo "<td>" . htmlspecialchars($row['id']) . "</td>";
+				echo "<td>" . htmlspecialchars($row['grocery_item']) . "</td>";
+				echo "<td>" . htmlspecialchars($row['brand_name']) . "</td>";
+				echo "<td>" . htmlspecialchars($row['type_of_grocery']) . "</td>";
+				echo "<td>" . htmlspecialchars($row['approx_cost_isk']) . "</td>";
+				echo "<td>" . htmlspecialchars($row['approx_cost_usd']) . "</td>";
+				echo "</tr>";
+			}
+
+			// End the HTML table
+			echo "</table>";
+			?>
+
+</body>
+</html>
